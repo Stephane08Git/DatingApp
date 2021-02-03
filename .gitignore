@@ -447,3 +447,6 @@ $RECYCLE.BIN/
 # Settings
 appsettings.json
 appsettings.Development.json
+
+# SSL
+ssl
