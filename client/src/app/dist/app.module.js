@@ -12,18 +12,26 @@ var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/common/http");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
+var nav_component_1 = require("./nav/nav.component");
+var forms_1 = require("@angular/forms");
+var dropdown_1 = require("ngx-bootstrap/dropdown");
+var animations_1 = require("@angular/platform-browser/animations");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                nav_component_1.NavComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                forms_1.FormsModule,
+                animations_1.BrowserAnimationsModule,
+                dropdown_1.BsDropdownModule.forRoot()
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]

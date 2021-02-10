@@ -9,21 +9,19 @@ exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(httpClient) {
-        this.httpClient = httpClient;
+    function AppComponent(accountService) {
+        this.accountService = accountService;
         this.title = 'App Dating';
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.getUsers();
+        this.setCurrentUser();
     };
-    AppComponent.prototype.getUsers = function () {
-        var _this = this;
-        return this.httpClient.get('https://localhost:5001/api/users').subscribe(function (response) {
-            _this.users = response;
-        }, function (error) {
-            console.log(error);
-        }, function () {
-        });
+    AppComponent.prototype.setCurrentUser = function () {
+        var user = null;
+        if (localStorage.getItem('user') !== null) {
+            user = JSON.parse(localStorage.getItem('user'));
+        }
+        this.accountService.setCurrentUser(user);
     };
     AppComponent = __decorate([
         core_1.Component({
