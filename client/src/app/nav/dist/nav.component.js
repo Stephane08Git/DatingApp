@@ -22,9 +22,6 @@ var NavComponent = /** @class */ (function () {
         this.accountService.login(this.model).subscribe(function (response) {
             console.log(response);
             _this.router.navigateByUrl('/members');
-        }, function (error) {
-            console.log(error);
-            _this.toastr.error(error.error);
         });
     };
     NavComponent.prototype.logout = function () {

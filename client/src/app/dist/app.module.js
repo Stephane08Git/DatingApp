@@ -22,6 +22,8 @@ var member_detail_component_1 = require("./members/member-detail/member-detail.c
 var lists_component_1 = require("./lists/lists.component");
 var messages_component_1 = require("./messages/messages.component");
 var shared_module_1 = require("./_modules/shared.module");
+var test_errors_component_1 = require("./test-errors/test-errors.component");
+var error_interceptor_1 = require("./_interceptors/error.interceptor");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -35,7 +37,8 @@ var AppModule = /** @class */ (function () {
                 member_list_component_1.MemberListComponent,
                 member_detail_component_1.MemberDetailComponent,
                 lists_component_1.ListsComponent,
-                messages_component_1.MessagesComponent
+                messages_component_1.MessagesComponent,
+                test_errors_component_1.TestErrorsComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -45,7 +48,11 @@ var AppModule = /** @class */ (function () {
                 animations_1.BrowserAnimationsModule,
                 shared_module_1.SharedModule
             ],
-            providers: [],
+            providers: [
+                {
+                    provide: http_1.HTTP_INTERCEPTORS, useClass: error_interceptor_1.ErrorInterceptor, multi: true
+                }
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
