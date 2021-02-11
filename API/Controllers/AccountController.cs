@@ -34,7 +34,7 @@ namespace API.Controllers
 
             return new UserDTo
             {
-                UserName = user.UserName,
+                Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
         }
@@ -46,15 +46,12 @@ namespace API.Controllers
                 .SingleOrDefaultAsync(x => x.UserName == loginDTo.Username);
 
             if (user == null) return Unauthorized("Username is not valid.");
-var test = BCrypt.Net.BCrypt.HashPassword(loginDTo.Password);
-var test1 = user.PasswordHash;
-var testbool = BCrypt.Net.BCrypt.Verify(loginDTo.Password, user.PasswordHash);
 
             if (!BCrypt.Net.BCrypt.Verify(loginDTo.Password, user.PasswordHash)) return Unauthorized("Incorrect password");
 
             return new UserDTo
             {
-                UserName = user.UserName,
+                Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
         }

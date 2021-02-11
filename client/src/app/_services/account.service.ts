@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-import {map} from 'rxjs/operators';
+import { empty, ReplaySubject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class AccountService {
     return this.http.post<User>(`${this.baseUrl}account/login`, model).pipe(
       map((response: User) => {
         const user = response;
-        if(user){
+        if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
         }
@@ -27,10 +27,10 @@ export class AccountService {
     );
   }
 
-  register(model: any){
+  register(model: any) {
     return this.http.post<User>(`${this.baseUrl}account/register`, model).pipe(
       map((user: User) => {
-        if(user) {
+        if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
         }
@@ -41,7 +41,7 @@ export class AccountService {
     this.currentUserSource.next(user);
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
   }
