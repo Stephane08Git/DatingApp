@@ -13,6 +13,7 @@ var dropdown_1 = require("ngx-bootstrap/dropdown");
 var ngx_toastr_1 = require("ngx-toastr");
 var tabs_1 = require("ngx-bootstrap/tabs");
 var ngx_gallery_1 = require("@kolkov/ngx-gallery");
+var ngx_spinner_1 = require("ngx-spinner");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -26,13 +27,15 @@ var SharedModule = /** @class */ (function () {
                     positionClass: 'toast-bottom-right'
                 }),
                 tabs_1.TabsModule.forRoot(),
-                ngx_gallery_1.NgxGalleryModule
+                ngx_gallery_1.NgxGalleryModule,
+                ngx_spinner_1.NgxSpinnerModule
             ],
             exports: [
                 dropdown_1.BsDropdownModule,
                 ngx_toastr_1.ToastrModule,
                 tabs_1.TabsModule,
-                ngx_gallery_1.NgxGalleryModule
+                ngx_gallery_1.NgxGalleryModule,
+                ngx_spinner_1.NgxSpinnerModule
             ]
         })
     ], SharedModule);

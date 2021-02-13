@@ -31,11 +31,11 @@ var ErrorInterceptor = /** @class */ (function () {
                             throw modalStateErrors.flat();
                         }
                         else {
-                            _this.toastr.error(error.statusText, error.status);
+                            _this.toastr.error(error.statusText === 'OK' ? 'Bad Request' : error.statusText, error.status);
                         }
                         break;
                     case 401:
-                        _this.toastr.error(error.statusText, error.status);
+                        _this.toastr.error(error.statusText === 'OK' ? 'Unauthorized' : error.statusText, error.status);
                         break;
                     case 404:
                         _this.router.navigateByUrl('/not-found');

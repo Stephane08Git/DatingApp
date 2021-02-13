@@ -28,6 +28,8 @@ var not_found_component_1 = require("./errors/not-found/not-found.component");
 var server_error_component_1 = require("./errors/server-error/server-error.component");
 var member_card_component_1 = require("./members/member-card/member-card.component");
 var jwt_interceptor_1 = require("./_interceptors/jwt.interceptor");
+var member_edit_component_1 = require("./members/member-edit/member-edit.component");
+var loading_interceptor_1 = require("./_interceptors/loading.interceptor");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -45,7 +47,8 @@ var AppModule = /** @class */ (function () {
                 test_errors_component_1.TestErrorsComponent,
                 not_found_component_1.NotFoundComponent,
                 server_error_component_1.ServerErrorComponent,
-                member_card_component_1.MemberCardComponent
+                member_card_component_1.MemberCardComponent,
+                member_edit_component_1.MemberEditComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -57,7 +60,8 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 { provide: http_1.HTTP_INTERCEPTORS, useClass: error_interceptor_1.ErrorInterceptor, multi: true },
-                { provide: http_1.HTTP_INTERCEPTORS, useClass: jwt_interceptor_1.JwtInterceptor, multi: true }
+                { provide: http_1.HTTP_INTERCEPTORS, useClass: jwt_interceptor_1.JwtInterceptor, multi: true },
+                { provide: http_1.HTTP_INTERCEPTORS, useClass: loading_interceptor_1.LoadingInterceptor, multi: true }
             ],
             bootstrap: [app_component_1.AppComponent]
         })

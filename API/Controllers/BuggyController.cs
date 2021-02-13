@@ -36,12 +36,10 @@ namespace API.Controllers
         {
             return BadRequest("This was not a good request");
         }
-
-        [Authorize]
         [HttpGet("auth")]
         public ActionResult<string> GetSecret()
         {
-            return "secret text";
+            return Unauthorized();
         }
     }
 }
