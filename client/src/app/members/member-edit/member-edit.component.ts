@@ -31,10 +31,10 @@ export class MemberEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadMemeber();
+    this.loadMember();
   }
 
-  loadMemeber() {
+  loadMember() {
     if (this.user) {
       this.memberService.getMember(this.user.username).subscribe(member => {
         this.member = member;

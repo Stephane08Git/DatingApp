@@ -14,6 +14,7 @@ var ngx_toastr_1 = require("ngx-toastr");
 var tabs_1 = require("ngx-bootstrap/tabs");
 var ngx_gallery_1 = require("@kolkov/ngx-gallery");
 var ngx_spinner_1 = require("ngx-spinner");
+var ng2_file_upload_1 = require("ng2-file-upload");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -28,14 +29,16 @@ var SharedModule = /** @class */ (function () {
                 }),
                 tabs_1.TabsModule.forRoot(),
                 ngx_gallery_1.NgxGalleryModule,
-                ngx_spinner_1.NgxSpinnerModule
+                ngx_spinner_1.NgxSpinnerModule,
+                ng2_file_upload_1.FileUploadModule
             ],
             exports: [
                 dropdown_1.BsDropdownModule,
                 ngx_toastr_1.ToastrModule,
                 tabs_1.TabsModule,
                 ngx_gallery_1.NgxGalleryModule,
-                ngx_spinner_1.NgxSpinnerModule
+                ngx_spinner_1.NgxSpinnerModule,
+                ng2_file_upload_1.FileUploadModule
             ]
         })
     ], SharedModule);

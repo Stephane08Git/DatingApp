@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -43,6 +44,7 @@ namespace API.Controllers
         public async Task<ActionResult<UserDTo>> Login(LoginDTo loginDTo)
         {
             var user = await this._context.Users
+                .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == loginDTo.Username);
 
             if (user == null) return Unauthorized("Username is not valid.");
@@ -52,7 +54,8 @@ namespace API.Controllers
             return new UserDTo
             {
                 Username = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
         }
 

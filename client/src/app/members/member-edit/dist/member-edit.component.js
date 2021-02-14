@@ -25,9 +25,9 @@ var MemberEditComponent = /** @class */ (function () {
     };
     ;
     MemberEditComponent.prototype.ngOnInit = function () {
-        this.loadMemeber();
+        this.loadMember();
     };
-    MemberEditComponent.prototype.loadMemeber = function () {
+    MemberEditComponent.prototype.loadMember = function () {
         var _this = this;
         if (this.user) {
             this.memberService.getMember(this.user.username).subscribe(function (member) {
