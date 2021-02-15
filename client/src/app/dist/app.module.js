@@ -30,6 +30,7 @@ var member_card_component_1 = require("./members/member-card/member-card.compone
 var jwt_interceptor_1 = require("./_interceptors/jwt.interceptor");
 var member_edit_component_1 = require("./members/member-edit/member-edit.component");
 var loading_interceptor_1 = require("./_interceptors/loading.interceptor");
+var photo_editor_component_1 = require("./members/photo-editor/photo-editor.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -48,13 +49,15 @@ var AppModule = /** @class */ (function () {
                 not_found_component_1.NotFoundComponent,
                 server_error_component_1.ServerErrorComponent,
                 member_card_component_1.MemberCardComponent,
-                member_edit_component_1.MemberEditComponent
+                member_edit_component_1.MemberEditComponent,
+                photo_editor_component_1.PhotoEditorComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routing_module_1.AppRoutingModule,
                 http_1.HttpClientModule,
                 forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 animations_1.BrowserAnimationsModule,
                 shared_module_1.SharedModule
             ],
