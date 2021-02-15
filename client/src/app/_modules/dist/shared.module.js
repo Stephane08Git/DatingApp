@@ -16,6 +16,9 @@ var ngx_gallery_1 = require("@kolkov/ngx-gallery");
 var ngx_spinner_1 = require("ngx-spinner");
 var ng2_file_upload_1 = require("ng2-file-upload");
 var datepicker_1 = require("ngx-bootstrap/datepicker");
+var pagination_1 = require("ngx-bootstrap/pagination");
+var buttons_1 = require("ngx-bootstrap/buttons");
+var ngx_timeago_1 = require("ngx-timeago");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -32,7 +35,10 @@ var SharedModule = /** @class */ (function () {
                 ngx_gallery_1.NgxGalleryModule,
                 ngx_spinner_1.NgxSpinnerModule,
                 ng2_file_upload_1.FileUploadModule,
-                datepicker_1.BsDatepickerModule.forRoot()
+                datepicker_1.BsDatepickerModule.forRoot(),
+                pagination_1.PaginationModule.forRoot(),
+                buttons_1.ButtonsModule.forRoot(),
+                ngx_timeago_1.TimeagoModule.forRoot()
             ],
             exports: [
                 dropdown_1.BsDropdownModule,
@@ -41,7 +47,10 @@ var SharedModule = /** @class */ (function () {
                 ngx_gallery_1.NgxGalleryModule,
                 ngx_spinner_1.NgxSpinnerModule,
                 ng2_file_upload_1.FileUploadModule,
-                datepicker_1.BsDatepickerModule
+                datepicker_1.BsDatepickerModule,
+                pagination_1.PaginationModule,
+                buttons_1.ButtonsModule,
+                ngx_timeago_1.TimeagoModule
             ]
         })
     ], SharedModule);
