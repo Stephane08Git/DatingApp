@@ -14,13 +14,12 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 exports.__esModule = true;
 exports.MembersService = void 0;
-var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
 var environment_1 = require("src/environments/environment");
-var pagination_1 = require("../_models/pagination");
 var userParams_1 = require("../_models/userParams");
+var paginationHelper_1 = require("./paginationHelper");
 var MembersService = /** @class */ (function () {
     function MembersService(http, accountService) {
         var _this = this;
@@ -52,12 +51,12 @@ var MembersService = /** @class */ (function () {
         if (response) {
             return rxjs_1.of(response);
         }
-        var params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+        var params = paginationHelper_1.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
         params = params.append('minAge', userParams.minAge.toString());
         params = params.append('maxAge', userParams.maxAge.toString());
         params = params.append('gender', userParams.gender.toString());
         params = params.append('orderBy', userParams.orderBy);
-        return this.getPaginatedResult(this.baseUrl + "users", params)
+        return paginationHelper_1.getPaginatedResult(this.baseUrl + "users", params, this.http)
             .pipe(operators_1.map(function (res) {
             _this.memberCache.set(Object.values(userParams).join('-'), res);
             return res;
@@ -88,29 +87,9 @@ var MembersService = /** @class */ (function () {
         return this.http.post(this.baseUrl + "likes/" + username, {});
     };
     MembersService.prototype.getLikes = function (predicate, pageNumber, pageSize) {
-        var params = this.getPaginationHeaders(pageNumber, pageSize);
+        var params = paginationHelper_1.getPaginationHeaders(pageNumber, pageSize);
         params = params.append('predicate', predicate);
-        return this.getPaginatedResult(this.baseUrl + "likes", params);
-    };
-    // intern function
-    MembersService.prototype.getPaginatedResult = function (url, params) {
-        var paginatedResult = new pagination_1.PaginatedResult();
-        return this.http.get(url, { observe: 'response', params: params }).pipe(operators_1.map(function (response) {
-            if (response.body)
-                paginatedResult.result = response.body;
-            else
-                console.log('error pagination');
-            if (response.headers.get('Pagination') !== null) {
-                paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
-            }
-            return paginatedResult;
-        }));
-    };
-    MembersService.prototype.getPaginationHeaders = function (pageNumber, pageSize) {
-        var params = new http_1.HttpParams();
-        params = params.append('pageNumber', pageNumber.toString());
-        params = params.append('pageSize', pageSize.toString());
-        return params;
+        return paginationHelper_1.getPaginatedResult(this.baseUrl + "likes", params, this.http);
     };
     MembersService = __decorate([
         core_1.Injectable({

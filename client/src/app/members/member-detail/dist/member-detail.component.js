@@ -10,12 +10,20 @@ exports.MemberDetailComponent = void 0;
 var core_1 = require("@angular/core");
 var ngx_gallery_1 = require("@kolkov/ngx-gallery");
 var MemberDetailComponent = /** @class */ (function () {
-    function MemberDetailComponent(memberService, route) {
+    function MemberDetailComponent(memberService, route, messageService) {
         this.memberService = memberService;
         this.route = route;
+        this.messageService = messageService;
+        this.messages = [];
     }
     MemberDetailComponent.prototype.ngOnInit = function () {
-        this.loadMember();
+        var _this = this;
+        this.route.data.subscribe(function (data) {
+            _this.member = data.member;
+        });
+        this.route.queryParams.subscribe(function (params) {
+            params.tab ? _this.selectTab(params.tab) : _this.selectTab(0);
+        });
         this.galleryOptions = [
             {
                 width: '500px',
@@ -26,6 +34,7 @@ var MemberDetailComponent = /** @class */ (function () {
                 preview: false
             }
         ];
+        this.galleryImages = this.getImages();
     };
     MemberDetailComponent.prototype.getImages = function () {
         var imageUrls = [];
@@ -39,13 +48,25 @@ var MemberDetailComponent = /** @class */ (function () {
         }
         return imageUrls;
     };
-    MemberDetailComponent.prototype.loadMember = function () {
+    MemberDetailComponent.prototype.loadMessages = function () {
         var _this = this;
-        this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(function (member) {
-            _this.member = member;
-            _this.galleryImages = _this.getImages();
-        }, function (error) { console.log(error); });
+        this.messageService.getMessageThread(this.member.username).subscribe(function (messages) {
+            _this.messages = messages;
+        });
     };
+    MemberDetailComponent.prototype.selectTab = function (tabId) {
+        if (this.memberTabs)
+            this.memberTabs.tabs[tabId].active = true;
+    };
+    MemberDetailComponent.prototype.onTabActivated = function (data) {
+        this.activeTab = data;
+        if (this.activeTab.heading == 'Messages' && this.messages.length === 0) {
+            this.loadMessages();
+        }
+    };
+    __decorate([
+        core_1.ViewChild('memberTabs', { static: true })
+    ], MemberDetailComponent.prototype, "memberTabs");
     MemberDetailComponent = __decorate([
         core_1.Component({
             selector: 'app-member-detail',
