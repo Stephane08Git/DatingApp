@@ -9,9 +9,17 @@ exports.__esModule = true;
 exports.MemberCardComponent = void 0;
 var core_1 = require("@angular/core");
 var MemberCardComponent = /** @class */ (function () {
-    function MemberCardComponent() {
+    function MemberCardComponent(memberService, toastr) {
+        this.memberService = memberService;
+        this.toastr = toastr;
     }
     MemberCardComponent.prototype.ngOnInit = function () {
+    };
+    MemberCardComponent.prototype.addLike = function (member) {
+        var _this = this;
+        this.memberService.addLike(member.username).subscribe(function () {
+            _this.toastr.success("You have like " + member.knownAs);
+        });
     };
     __decorate([
         core_1.Input()
