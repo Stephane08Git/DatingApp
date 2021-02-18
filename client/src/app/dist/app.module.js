@@ -31,6 +31,14 @@ var jwt_interceptor_1 = require("./_interceptors/jwt.interceptor");
 var member_edit_component_1 = require("./members/member-edit/member-edit.component");
 var loading_interceptor_1 = require("./_interceptors/loading.interceptor");
 var photo_editor_component_1 = require("./members/photo-editor/photo-editor.component");
+var text_input_component_1 = require("./_forms/text-input/text-input.component");
+var date_input_component_1 = require("./_forms/date-input/date-input.component");
+var member_messages_component_1 = require("./members/member-messages/member-messages.component");
+var admin_panel_component_1 = require("./admin/admin-panel/admin-panel.component");
+var has_role_directive_1 = require("./_directives/has-role.directive");
+var user_management_component_1 = require("./admin/user-management/user-management.component");
+var photo_management_component_1 = require("./admin/photo-management/photo-management.component");
+var roles_modal_component_1 = require("./roles-modal/roles-modal.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -50,7 +58,15 @@ var AppModule = /** @class */ (function () {
                 server_error_component_1.ServerErrorComponent,
                 member_card_component_1.MemberCardComponent,
                 member_edit_component_1.MemberEditComponent,
-                photo_editor_component_1.PhotoEditorComponent
+                photo_editor_component_1.PhotoEditorComponent,
+                text_input_component_1.TextInputComponent,
+                date_input_component_1.DateInputComponent,
+                member_messages_component_1.MemberMessagesComponent,
+                admin_panel_component_1.AdminPanelComponent,
+                has_role_directive_1.HasRoleDirective,
+                user_management_component_1.UserManagementComponent,
+                photo_management_component_1.PhotoManagementComponent,
+                roles_modal_component_1.RolesModalComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -66,7 +82,10 @@ var AppModule = /** @class */ (function () {
                 { provide: http_1.HTTP_INTERCEPTORS, useClass: jwt_interceptor_1.JwtInterceptor, multi: true },
                 { provide: http_1.HTTP_INTERCEPTORS, useClass: loading_interceptor_1.LoadingInterceptor, multi: true }
             ],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [app_component_1.AppComponent],
+            entryComponents: [
+                roles_modal_component_1.RolesModalComponent
+            ]
         })
     ], AppModule);
     return AppModule;

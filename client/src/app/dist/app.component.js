@@ -21,7 +21,8 @@ var AppComponent = /** @class */ (function () {
         if (localStorage.getItem('user') !== null) {
             user = JSON.parse(localStorage.getItem('user'));
         }
-        this.accountService.setCurrentUser(user);
+        if (user)
+            this.accountService.setCurrentUser(user);
     };
     AppComponent = __decorate([
         core_1.Component({

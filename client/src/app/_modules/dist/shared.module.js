@@ -19,6 +19,7 @@ var datepicker_1 = require("ngx-bootstrap/datepicker");
 var pagination_1 = require("ngx-bootstrap/pagination");
 var buttons_1 = require("ngx-bootstrap/buttons");
 var ngx_timeago_1 = require("ngx-timeago");
+var modal_1 = require("ngx-bootstrap/modal");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -38,7 +39,8 @@ var SharedModule = /** @class */ (function () {
                 datepicker_1.BsDatepickerModule.forRoot(),
                 pagination_1.PaginationModule.forRoot(),
                 buttons_1.ButtonsModule.forRoot(),
-                ngx_timeago_1.TimeagoModule.forRoot()
+                ngx_timeago_1.TimeagoModule.forRoot(),
+                modal_1.ModalModule.forRoot()
             ],
             exports: [
                 dropdown_1.BsDropdownModule,
@@ -50,7 +52,8 @@ var SharedModule = /** @class */ (function () {
                 datepicker_1.BsDatepickerModule,
                 pagination_1.PaginationModule,
                 buttons_1.ButtonsModule,
-                ngx_timeago_1.TimeagoModule
+                ngx_timeago_1.TimeagoModule,
+                modal_1.ModalModule
             ]
         })
     ], SharedModule);
