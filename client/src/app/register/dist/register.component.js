@@ -53,7 +53,7 @@ var RegisterComponent = /** @class */ (function () {
     RegisterComponent.prototype.register = function () {
         var _this = this;
         this.accountService.register(this.registerForm.value).subscribe(function (response) {
-            console.log(response);
+            console.log('response :>> ', response);
             _this.router.navigateByUrl('/members');
         }, function (error) {
             _this.validationErrors = error;

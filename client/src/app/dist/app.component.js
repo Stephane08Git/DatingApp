@@ -9,8 +9,9 @@ exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(accountService) {
+    function AppComponent(accountService, presence) {
         this.accountService = accountService;
+        this.presence = presence;
         this.title = 'App Dating';
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -18,8 +19,9 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.setCurrentUser = function () {
         var user = null;
-        if (localStorage.getItem('user') !== null) {
-            user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            this.accountService.setCurrentUser(user);
+            this.presence.createHubConnection(user);
         }
         if (user)
             this.accountService.setCurrentUser(user);

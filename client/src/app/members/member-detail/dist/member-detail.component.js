@@ -9,12 +9,19 @@ exports.__esModule = true;
 exports.MemberDetailComponent = void 0;
 var core_1 = require("@angular/core");
 var ngx_gallery_1 = require("@kolkov/ngx-gallery");
+var operators_1 = require("rxjs/operators");
 var MemberDetailComponent = /** @class */ (function () {
-    function MemberDetailComponent(memberService, route, messageService) {
-        this.memberService = memberService;
+    function MemberDetailComponent(presence, route, messageService, accountService, router) {
+        var _this = this;
+        this.presence = presence;
         this.route = route;
         this.messageService = messageService;
+        this.accountService = accountService;
+        this.router = router;
         this.messages = [];
+        this.accountService.currentUser$.pipe(operators_1.take(1)).subscribe(function (user) { if (user)
+            _this.user = user; });
+        this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
     }
     MemberDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -61,8 +68,14 @@ var MemberDetailComponent = /** @class */ (function () {
     MemberDetailComponent.prototype.onTabActivated = function (data) {
         this.activeTab = data;
         if (this.activeTab.heading == 'Messages' && this.messages.length === 0) {
-            this.loadMessages();
+            this.messageService.createHubConnection(this.user, this.member.username);
         }
+        else {
+            this.messageService.stopHubConnection();
+        }
+    };
+    MemberDetailComponent.prototype.ngOnDestroy = function () {
+        this.messageService.stopHubConnection();
     };
     __decorate([
         core_1.ViewChild('memberTabs', { static: true })

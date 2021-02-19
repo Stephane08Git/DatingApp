@@ -41,7 +41,7 @@ var MemberEditComponent = /** @class */ (function () {
             _this.toastr.success('Profile updated successfuly');
             _this.editForm.reset(_this.member);
         }, function (error) {
-            console.log(error);
+            console.log('error :>> ', error);
         });
     };
     __decorate([

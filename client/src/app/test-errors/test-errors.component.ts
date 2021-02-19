@@ -19,33 +19,33 @@ export class TestErrorsComponent implements OnInit {
 
   get404Error() {
     this.http.get(`${this.baseUrl}buggy/not-found`).subscribe(response => {
-      console.log(response);
+      console.log('response :>> ', response);
     }, error => {
-      console.log(error);
+      console.log('error :>> ', error);
     })
   }
 
   get400Error() {
     this.http.get(`${this.baseUrl}buggy/bad-request`).subscribe(response => {
-      console.log(response);
+      console.log('response :>> ', response);
     }, error => {
-      console.log(error);
+      console.log('error :>> ', error);
     })
   }
 
   get500Error() {
     this.http.get(`${this.baseUrl}buggy/server-error`).subscribe(response => {
-      console.log(response);
+      console.log('response :>> ', response);
     }, error => {
-      console.log(error);
+      console.log('error :>> ', error);
     })
   }
 
     get401Error() {
     this.http.get(`${this.baseUrl}buggy/auth`).subscribe(response => {
-      console.log(response);
+      console.log('response :>> ', response);
     }, error => {
-      console.log(error);
+      console.log('error :>> ', error);
     })
   }
 
@@ -53,9 +53,9 @@ export class TestErrorsComponent implements OnInit {
     this.http.post(`${this.baseUrl}account/register`, {}, {
       observe : 'response'
     }).subscribe(response => {
-      console.log(response);
+      console.log('response :>> ', response);
     }, error => {
-      console.log(error);
+      console.log('error :>> ', error);
       this.validationErrors = error;
     })
   }

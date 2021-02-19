@@ -41,7 +41,7 @@ export class MessagesComponent implements OnInit {
     );
   }
   pageChanged(event: any) {
-    console.log(event);
+   console.log('event :>> ', event);
     this.pageNumber = event.page;
   }
 }

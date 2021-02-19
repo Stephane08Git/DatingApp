@@ -36,7 +36,7 @@ var MessagesComponent = /** @class */ (function () {
         });
     };
     MessagesComponent.prototype.pageChanged = function (event) {
-        console.log(event);
+        console.log('event :>> ', event);
         this.pageNumber = event.page;
     };
     MessagesComponent = __decorate([

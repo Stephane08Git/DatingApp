@@ -19,30 +19,30 @@ var TestErrorsComponent = /** @class */ (function () {
     };
     TestErrorsComponent.prototype.get404Error = function () {
         this.http.get(this.baseUrl + "buggy/not-found").subscribe(function (response) {
-            console.log(response);
+            console.log('response :>> ', response);
         }, function (error) {
-            console.log(error);
+            console.log('error :>> ', error);
         });
     };
     TestErrorsComponent.prototype.get400Error = function () {
         this.http.get(this.baseUrl + "buggy/bad-request").subscribe(function (response) {
-            console.log(response);
+            console.log('response :>> ', response);
         }, function (error) {
-            console.log(error);
+            console.log('error :>> ', error);
         });
     };
     TestErrorsComponent.prototype.get500Error = function () {
         this.http.get(this.baseUrl + "buggy/server-error").subscribe(function (response) {
-            console.log(response);
+            console.log('response :>> ', response);
         }, function (error) {
-            console.log(error);
+            console.log('error :>> ', error);
         });
     };
     TestErrorsComponent.prototype.get401Error = function () {
         this.http.get(this.baseUrl + "buggy/auth").subscribe(function (response) {
-            console.log(response);
+            console.log('response :>> ', response);
         }, function (error) {
-            console.log(error);
+            console.log('error :>> ', error);
         });
     };
     TestErrorsComponent.prototype.get400ValidationError = function () {
@@ -50,9 +50,9 @@ var TestErrorsComponent = /** @class */ (function () {
         this.http.post(this.baseUrl + "account/register", {}, {
             observe: 'response'
         }).subscribe(function (response) {
-            console.log(response);
+            console.log('response :>> ', response);
         }, function (error) {
-            console.log(error);
+            console.log('error :>> ', error);
             _this.validationErrors = error;
         });
     };
