@@ -45,9 +45,11 @@ var AccountService = /** @class */ (function () {
         console.log(1);
         localStorage.setItem('user', JSON.stringify(user));
         console.log(2);
+        console.log(localStorage);
         this.currentUserSource.next(user);
     };
     AccountService.prototype.logout = function () {
+        console.log('logout');
         localStorage.removeItem('user');
         this.currentUserSource.next(null);
         this.presence.stopHubConnection();

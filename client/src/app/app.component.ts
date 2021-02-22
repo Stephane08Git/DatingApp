@@ -23,11 +23,13 @@ export class AppComponent implements OnInit {
   setCurrentUser() {
     let user: User | null = null;
 
+    if(localStorage.getItem('user')){
+      user = JSON.parse(<string>localStorage.getItem('user'));
+    }
     if (user) {
       this.accountService.setCurrentUser(user);
       this.presence.createHubConnection(user);
     }
-    if (user) this.accountService.setCurrentUser(user);
   }
 
 }

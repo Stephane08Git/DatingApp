@@ -39,6 +39,7 @@ var has_role_directive_1 = require("./_directives/has-role.directive");
 var user_management_component_1 = require("./admin/user-management/user-management.component");
 var photo_management_component_1 = require("./admin/photo-management/photo-management.component");
 var roles_modal_component_1 = require("./roles-modal/roles-modal.component");
+var confirm_dialog_component_1 = require("./modals/confirm-dialog/confirm-dialog.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -66,7 +67,8 @@ var AppModule = /** @class */ (function () {
                 has_role_directive_1.HasRoleDirective,
                 user_management_component_1.UserManagementComponent,
                 photo_management_component_1.PhotoManagementComponent,
-                roles_modal_component_1.RolesModalComponent
+                roles_modal_component_1.RolesModalComponent,
+                confirm_dialog_component_1.ConfirmDialogComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -84,7 +86,8 @@ var AppModule = /** @class */ (function () {
             ],
             bootstrap: [app_component_1.AppComponent],
             entryComponents: [
-                roles_modal_component_1.RolesModalComponent
+                roles_modal_component_1.RolesModalComponent,
+                confirm_dialog_component_1.ConfirmDialogComponent
             ]
         })
     ], AppModule);

@@ -19,12 +19,13 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.setCurrentUser = function () {
         var user = null;
+        if (localStorage.getItem('user')) {
+            user = JSON.parse(localStorage.getItem('user'));
+        }
         if (user) {
             this.accountService.setCurrentUser(user);
             this.presence.createHubConnection(user);
         }
-        if (user)
-            this.accountService.setCurrentUser(user);
     };
     AppComponent = __decorate([
         core_1.Component({

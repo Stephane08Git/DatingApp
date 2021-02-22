@@ -48,10 +48,12 @@ export class AccountService {
     console.log(1);
     localStorage.setItem('user', JSON.stringify(user));
     console.log(2);
+    console.log(localStorage);
     this.currentUserSource.next(user);
   }
 
   logout() {
+    console.log('logout');
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
     this.presence.stopHubConnection();
