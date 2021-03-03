@@ -57,8 +57,9 @@ var operators_1 = require("rxjs/operators");
 var environment_1 = require("src/environments/environment");
 var paginationHelper_1 = require("./paginationHelper");
 var MessageService = /** @class */ (function () {
-    function MessageService(http) {
+    function MessageService(http, busyService) {
         this.http = http;
+        this.busyService = busyService;
         this.baseUrl = environment_1.environment.apiUrl; // `${this.baseUrl}`
         this.hubUrl = environment_1.environment.hubUrl;
         this.messageThreadSource = new rxjs_1.BehaviorSubject([]);
@@ -66,6 +67,7 @@ var MessageService = /** @class */ (function () {
     }
     MessageService.prototype.createHubConnection = function (user, otherUsername) {
         var _this = this;
+        this.busyService.busy();
         this.hubConnection = new signalr_1.HubConnectionBuilder()
             .withUrl(this.hubUrl + "message?user=" + otherUsername, {
             accessTokenFactory: function () { return user.token; }
@@ -73,7 +75,7 @@ var MessageService = /** @class */ (function () {
             .withAutomaticReconnect()
             .build();
         this.hubConnection
-            .start()["catch"](function (error) { return console.log(error); });
+            .start()["catch"](function (error) { return console.log(error); })["finally"](function () { return _this.busyService.idle(); });
         this.hubConnection.on('ReceiveMessageThread', function (messages) {
             _this.messageThreadSource.next(messages);
         });
@@ -96,8 +98,10 @@ var MessageService = /** @class */ (function () {
         });
     };
     MessageService.prototype.stopHubConnection = function () {
-        if (this.hubConnection)
+        if (this.hubConnection) {
+            this.messageThreadSource.next([]);
             this.hubConnection.stop();
+        }
     };
     MessageService.prototype.getMessages = function (pageNumber, pageSize, container) {
         var params = paginationHelper_1.getPaginationHeaders(pageNumber, pageSize);
